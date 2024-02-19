@@ -6,5 +6,10 @@
 using namespace std;
 
 int getMenuChoice();
+void openFile();
+void searchItem();
+void printItemFrequency();
+void printItemHistogram();
+void dataManager();
 
 #endif
