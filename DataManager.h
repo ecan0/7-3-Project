@@ -15,9 +15,9 @@ private:
 
 public:
     DataManager(string t_inputFilename);
-    list<string> getTextList();
     void openFile();
     void writeData();
+    list<string> getTextList();
 };
 
 #endif

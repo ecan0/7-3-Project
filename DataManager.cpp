@@ -13,6 +13,7 @@ DataManager::DataManager(string t_inputFilename)
 void DataManager::openFile()
 {
     ifstream inFS; //input file stream
+    string produceItem;
 
     // open provided data file
     inFS.open("CS210_Project_Three_Input_File.txt");
@@ -23,6 +24,13 @@ void DataManager::openFile()
         cout << "File does not exist." << endl;
         return;
     }
+
+    while (inFS >> produceItem)
+    {
+        m_processedTextFile.push_front(produceItem);
+    }
+
+    inFS.close();
 }
 
 list<string> DataManager::getTextList()

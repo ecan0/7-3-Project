@@ -22,11 +22,36 @@ list<string> GroceryCart::getRecordsList()
 void GroceryCart::searchItem()
 {
     string itemName;
+    list<string> records = m_produceList;
     cout << "Enter the item name you would like to search: " << endl;
     cin >> itemName;
-    find(m_produceList.begin(), m_produceList.end(), itemName);
-    cout << itemName << " appears " << count(m_produceList.begin(), m_produceList.end(), itemName) << "times." << endl;
+    find(records.begin(), records.end(), itemName);
+    cout << itemName << " appears " << count(records.begin(), records.end(), itemName) << " times." << endl;
 }
+
+void GroceryCart::printItemFrequency()
+{
+    list<string> records = m_produceList;
+    int frequency;
+    for (auto const& item : m_produceList)
+    {
+        frequency = count(records.begin(), records.end(), item);
+        cout << item << " " << frequency << endl;
+    }
+}
+
+void GroceryCart::printItemHistogram()
+{
+    list<string> records = m_produceList;
+    int frequency;
+    for (auto const& item : m_produceList)
+    {
+        frequency = count(records.begin(), records.end(), item);
+        cout << item << " " << string(frequency, '*') << endl;
+    }
+}
+
+
 // Takes user input value of 1-4 and checks to ensure it's an integer value.
 int GroceryCart::getMenuChoice()
 {
@@ -35,9 +60,6 @@ int GroceryCart::getMenuChoice()
     // loops until recieves correct input
     while (true)
     {
-        cout << endl
-             << "Enter menu choice 1-4.";
-
         // Check if the input is an integer
         if (cin >> input)
         {

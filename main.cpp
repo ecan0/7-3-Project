@@ -9,6 +9,7 @@ using namespace std;
 int main()
 {
     DataManager dataFiles = DataManager("CS210_Project_Three_Input_File.txt");
+    dataFiles.openFile();
     list<string> textFile = dataFiles.getTextList();
     GroceryCart groceryRecords = GroceryCart(textFile);
     int menuInput;
@@ -21,8 +22,13 @@ int main()
         {
             case 1:
                 groceryRecords.searchItem();
+                break;
             case 2:
+                groceryRecords.printItemFrequency();
+                break;
             case 3:
+                groceryRecords.printItemHistogram();
+                break;
             case 4:
                 cout << "Exiting program.";
                 return 0;
@@ -31,6 +37,4 @@ int main()
                 break;
         }
     } while (true);
-
-    return 0;
 }
