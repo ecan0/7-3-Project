@@ -1,14 +1,34 @@
+#include "GroceryCart.h"
 #include <iostream>
 #include <iomanip>
 #include <fstream>
 #include <string>
+#include <list>
+#include <algorithm>
 #include <limits> // Include for numeric_limits.
-#include "GroceryCart.h"
 
 using namespace std;
 
+GroceryCart::GroceryCart(list<string> t_produceList)
+{
+    m_produceList = t_produceList;
+}
+
+list<string> GroceryCart::getRecordsList()
+{
+    return m_produceList;
+}
+
+void GroceryCart::searchItem()
+{
+    string itemName;
+    cout << "Enter the item name you would like to search: " << endl;
+    cin >> itemName;
+    find(m_produceList.begin(), m_produceList.end(), itemName);
+    cout << itemName << " appears " << count(m_produceList.begin(), m_produceList.end(), itemName) << "times." << endl;
+}
 // Takes user input value of 1-4 and checks to ensure it's an integer value.
-int getMenuChoice()
+int GroceryCart::getMenuChoice()
 {
     int input;
 
@@ -43,3 +63,4 @@ int getMenuChoice()
     }
     return input;
 }
+ 

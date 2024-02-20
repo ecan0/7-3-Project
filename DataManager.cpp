@@ -10,7 +10,7 @@ DataManager::DataManager(string t_inputFilename)
     m_inputFilename = t_inputFilename;
 }
 
-void openFile()
+void DataManager::openFile()
 {
     ifstream inFS; //input file stream
 
@@ -23,4 +23,9 @@ void openFile()
         cout << "File does not exist." << endl;
         return;
     }
+}
+
+list<string> DataManager::getTextList()
+{
+    return m_processedTextFile;
 }
