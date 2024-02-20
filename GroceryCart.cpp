@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <fstream>
 #include <string>
+#include <map>
 #include <list>
 #include <algorithm>
 #include <limits> // Include for numeric_limits.
@@ -31,23 +32,33 @@ void GroceryCart::searchItem()
 
 void GroceryCart::printItemFrequency()
 {
+    map<string, int> itemFrequency;
     list<string> records = m_produceList;
     int frequency;
-    for (auto const& item : m_produceList)
+    for (auto const& item : records)
     {
         frequency = count(records.begin(), records.end(), item);
-        cout << item << " " << frequency << endl;
+        itemFrequency.emplace(item, frequency);
+    }
+    for(const auto &itemPair: itemFrequency)
+    {
+        cout << itemPair.first << " " << itemPair.second << endl;
     }
 }
 
 void GroceryCart::printItemHistogram()
 {
+    map<string, int> itemHistogram;
     list<string> records = m_produceList;
     int frequency;
-    for (auto const& item : m_produceList)
+    for (auto const& item : records)
     {
         frequency = count(records.begin(), records.end(), item);
-        cout << item << " " << string(frequency, '*') << endl;
+        itemHistogram.emplace(item, frequency);
+    }
+    for(const auto &itemPair: itemHistogram)
+    {
+        cout << itemPair.first << " " << string(itemPair.second, '*') << endl;
     }
 }
 
@@ -78,7 +89,7 @@ int GroceryCart::getMenuChoice()
         {
             // Handle non-integer input
             cout << endl
-                 << "Invalid input. Please enter a valid integer." << endl;
+                 << "Invalid input. Please enter a valid integer between 1 and 4." << endl;
             cin.clear();                                         // Clear the error state
             cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Discard invalid input
         }

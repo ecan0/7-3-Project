@@ -30,6 +30,8 @@ void DataManager::openFile()
         m_processedTextFile.push_front(produceItem);
     }
 
+    m_processedTextFile.sort();
+
     inFS.close();
 }
 
