@@ -39,11 +39,17 @@ void GroceryCart::generateItemCount()
         frequency = count(records.begin(), records.end(), item);
         itemFrequency.emplace(item, frequency);
     }
+    setTalliedItemPairs(itemFrequency);
 }
 
 map<string, int> GroceryCart::getTalliedItemPairs()
 {
     return m_talliedItemPairs;
+}
+
+void GroceryCart::setTalliedItemPairs(map<string, int> t_talliedItemPairs)
+{
+    m_talliedItemPairs = t_talliedItemPairs;
 }
 
 void GroceryCart::printItemFrequency()

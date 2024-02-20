@@ -12,6 +12,7 @@ int main()
     dataFiles.openFile();
     list<string> compiledItemList = dataFiles.getTextFile();
     GroceryCart groceryRecords = GroceryCart(compiledItemList);
+    groceryRecords.generateItemCount();
     dataFiles.writeData(groceryRecords.getTalliedItemPairs());
     int menuInput;
 

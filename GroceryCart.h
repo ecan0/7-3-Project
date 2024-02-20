@@ -18,6 +18,7 @@ public:
     list<string> getRecordsList();
     void generateItemCount();
     map<string, int> getTalliedItemPairs();
+    void setTalliedItemPairs(map<string,int> t_talliedItemPairs);
     int getMenuChoice();
     void searchItem();
     void printItemFrequency();
