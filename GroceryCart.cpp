@@ -1,7 +1,6 @@
 #include "GroceryCart.h"
 #include <iostream>
 #include <iomanip>
-#include <fstream>
 #include <string>
 #include <map>
 #include <list>
@@ -30,7 +29,7 @@ void GroceryCart::searchItem()
     cout << itemName << " appears " << count(records.begin(), records.end(), itemName) << " times." << endl;
 }
 
-void GroceryCart::printItemFrequency()
+void GroceryCart::generateItemCount()
 {
     map<string, int> itemFrequency;
     list<string> records = m_produceList;
@@ -40,7 +39,16 @@ void GroceryCart::printItemFrequency()
         frequency = count(records.begin(), records.end(), item);
         itemFrequency.emplace(item, frequency);
     }
-    for(const auto &itemPair: itemFrequency)
+}
+
+map<string, int> GroceryCart::getTalliedItemPairs()
+{
+    return m_talliedItemPairs;
+}
+
+void GroceryCart::printItemFrequency()
+{
+    for(const auto &itemPair: getTalliedItemPairs())
     {
         cout << itemPair.first << " " << itemPair.second << endl;
     }
@@ -48,15 +56,7 @@ void GroceryCart::printItemFrequency()
 
 void GroceryCart::printItemHistogram()
 {
-    map<string, int> itemHistogram;
-    list<string> records = m_produceList;
-    int frequency;
-    for (auto const& item : records)
-    {
-        frequency = count(records.begin(), records.end(), item);
-        itemHistogram.emplace(item, frequency);
-    }
-    for(const auto &itemPair: itemHistogram)
+    for(const auto &itemPair: getTalliedItemPairs())
     {
         cout << itemPair.first << " " << string(itemPair.second, '*') << endl;
     }

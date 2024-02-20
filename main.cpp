@@ -10,8 +10,9 @@ int main()
 {
     DataManager dataFiles = DataManager("CS210_Project_Three_Input_File.txt");
     dataFiles.openFile();
-    list<string> textFile = dataFiles.getTextList();
-    GroceryCart groceryRecords = GroceryCart(textFile);
+    list<string> compiledItemList = dataFiles.getTextFile();
+    GroceryCart groceryRecords = GroceryCart(compiledItemList);
+    dataFiles.writeData(groceryRecords.getTalliedItemPairs());
     int menuInput;
 
     cout << "Welcome to the Corner Grocer item-tracking application!\n" 

@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <map>
 #include "DataManager.h"
 
 using namespace std;
@@ -35,7 +36,24 @@ void DataManager::openFile()
     inFS.close();
 }
 
-list<string> DataManager::getTextList()
+list<string> DataManager::getTextFile()
 {
     return m_processedTextFile;
+}
+
+void DataManager::writeData(map<string, int> t_itemPairs)
+{
+    ofstream outFS;
+    outFS.open("frequency.dat");
+    if(!outFS.is_open())
+    {
+        cout << "Failure creating backup file." << endl;
+        return;
+    }
+    for(const auto &items : t_itemPairs)
+    {
+        outFS << items.first << " " << items.second << endl;
+    }
+
+    outFS.close();
 }
